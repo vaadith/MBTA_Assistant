@@ -15,4 +15,3 @@ pip install -r requirements.txt
 
 # Provide information to user
 echo "Setup completed."
-source myenv/bin/activate
