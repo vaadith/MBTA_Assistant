@@ -15,13 +15,11 @@ def get_user_input():
 
 def get_start_station(mbta_graph):
     start_name = input("Please enter start station name : ")
-    start_id = mbta_graph.get_stop_id(start_name) 
-    return start_id
+    return start_name
 
 def get_stop_station(mbta_graph):
     end_name = input("Please enter end station name : ") 
-    end_id = mbta_graph.get_stop_id(end_name)
-    return end_id
+    return end_name
 
 def run_cli(mbta: MBTA_API, mbta_graph: MBTAGraphBuilder):
     running = True 

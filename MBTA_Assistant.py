@@ -9,6 +9,7 @@ def initialize_mbta_api(api_key) -> MBTA_API:
 def initialize_mbta_graph(mbta_api: MBTA_API) -> MBTAGraphBuilder:
     mbta_graph = MBTAGraphBuilder(mbta_api)
     mbta_graph.build_subway_graph()
+    mbta_graph.display_stop_graph()
     return mbta_graph
 
 if __name__ == "__main__":
