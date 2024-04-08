@@ -55,7 +55,6 @@ class MBTA_API:
         if "data" in data and data["data"]: 
             for trip in data['data']:
                 stop_ids = [item["id"] for item in trip['relationships']['stops']['data']] 
-                print(routeId)
                 num_stops = len(stop_ids)
                 return num_stops
         else:

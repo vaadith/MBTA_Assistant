@@ -10,7 +10,7 @@ def print_main_screen():
     print("4. I dont need help, exit.")
 
 def get_user_input():
-    val = "3" #input("Please enter a number 1, 2, 3 or 4 : ") 
+    val = input("Please enter a number 1, 2, 3 or 4 : ") 
     return val
 
 def get_start_station(mbta_graph):
@@ -50,7 +50,7 @@ def run_cli(mbta: MBTA_API, mbta_graph: MBTAGraphBuilder):
                 print("----------------------------------------------")
                 start = get_start_station(mbta_graph)
                 end = get_stop_station(mbta_graph)
-                print(mbta_graph.find_all_routes(start, end))
+                print("You can take the following routes : ", mbta_graph.find_all_routes(start, end))
 
             case "4": 
                 print("Goodbye!")
