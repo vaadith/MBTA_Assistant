@@ -1,30 +1,18 @@
-import requests
-import json
+from mbta_cli import run_cli
+from mbta_api import MBTA_API
+from mbta_graph_builder import MBTAGraphBuilder
 
-print("Hi! I am the MBTA Assistant! How can I help you?")
-print("1. List all the subway route names")
-print("2. Trivia")
-print("3. Which train should I take?")
-print("4. I dont need help, exit.")
-check = True
-while check:
-    val = input("Please enter a number 1, 2, 3 or 4 : ") 
+def initialize_mbta_api(api_key) -> MBTA_API:
+    mbta = MBTA_API(api_key)
+    return mbta
 
-    match val:
-        case "1":
-            r = requests.get('https://api-v3.mbta.com/lines?sort=long_name')
-            input_dict = json.loads(r.text)
-            long_names = [item['attributes']['long_name'] for item in input_dict['data']]
-            for name in long_names:
-                print(name)
+def initialize_mbta_graph(mbta_api: MBTA_API) -> MBTAGraphBuilder:
+    mbta_graph = MBTAGraphBuilder(mbta_api)
+    mbta_graph.build_subway_graph()
+    return mbta_graph
 
-        case "2": 
-            print("TODO")
- 
-        case "3": 
-            print("TODO")
-        case "4": 
-            print("Goodbye!")
-            check = False
-        case _: 
-            print("Please enter 1,2,3")
+if __name__ == "__main__":
+    api_key = "494bcbad1fc2431d98a3e45860ce301f"
+    mbta_api = initialize_mbta_api(api_key)
+    mbta_graph = initialize_mbta_graph(mbta_api)
+    run_cli(mbta_api, mbta_graph)
